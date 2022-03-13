@@ -28,7 +28,7 @@ app.get('/all-todos', (req, res) => {
         .catch(err => res.json({message: 'Error occurred'}))
 });
 
-app.get('/simple-todo', (req, res)=> {
+app.get('/single-todo', (req, res)=> {
     const { body } = req;
     Todo.findOne({title: body?.title})
         .then(result => res.json(result))
@@ -44,7 +44,7 @@ app.delete('/delete-todo', (req, res) => {
 
 app.put('/update-todo', (req, res) => {
     const { body } = req;
-    Todo.findOneAndUpdate({_id: '622e4ebaf12b3579f20741cf'}, {title: body?.title})
+    Todo.findOneAndUpdate({id: body?.todoId}, {title: body?.title})
         .then(result => res.json({message: `Updated Successfully. New Title for todo: ${body?.title}`}))
         .catch(err => res.json({message: 'Error occurred'}));
 })
